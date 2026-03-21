@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: native
+  application:
+    name: config-server
+  # Spring Cloud Config Server configuration
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config-repo
+
+server:
+  port: 8080
+
