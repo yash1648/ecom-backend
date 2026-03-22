@@ -1,0 +1,19 @@
+spring:
+  mongodb:
+    host: localhost
+    password: password
+    username: root
+    port: 27017
+    database: customer
+    authentication-database: admin
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka/
+springdoc:
+  swagger-ui:
+    path: /api-docs/swagger-ui.html
+
+server:
+  port: 8082
