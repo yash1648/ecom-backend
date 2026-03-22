@@ -1,0 +1,30 @@
+spring:
+    datasource:
+    url: jdbc:postgresql://localhost:5432/order
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+    jpa:
+      hibernate:
+        ddl-auto: create
+      database: postgresql
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+    kafka:
+       producer:
+         bootstrap-servers: localhost:9092
+         key-serializer: org.apache.kafka.common.serialization.StringSerializer
+         value-serializer: org.apache.kafka.support.serializer.JsonSerializer
+         properties:
+           spring.json.type.mapping:
+             orderConfirmation: com.grim.order.kafka.OrderConfirmation
+springdoc:
+  swagger-ui:
+    path: /api-docs/swagger-ui.html
+server:
+  port: 8084
+
+application:
+  config:
+    customer-url: http://localhost:8888/api/v1/customers
+    product-url: http://localhost:8888/api/v1/products
+    payment-url: http://localhost:8888/api/v1/payments
