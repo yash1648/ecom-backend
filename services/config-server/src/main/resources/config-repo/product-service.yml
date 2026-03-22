@@ -16,7 +16,9 @@ spring:
     baseline-version: 0
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
-
+springdoc:
+  swagger-ui:
+    path: /api-docs/swagger-ui.html
 
 
 server:
