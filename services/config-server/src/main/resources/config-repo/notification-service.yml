@@ -1,21 +1,24 @@
 spring:
+
   mongodb:
-    host: localhost
-    password: password
-    username: root
-    port: 27017
-    database: customer
-    authentication-database: admin
+      host: localhost
+      port: 27017
+      database: notification
+      username: root
+      password: password
+      authentication-database: admin
 
   kafka:
     consumer:
       bootstrap-servers: localhost:9092
-      key-deserializer: org.apache.kafka.common.serialization.StringSerializer
-      value-deserializer: org.apache.kafka.support.serializer.JsonSerializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.support.serializer.JsonDeserializer
       properties:
-        spring.json.trusted.packages: com.grim.order.kafka,com.grim.payment.dto
+        spring.json.trusted.packages: "*"
+
         spring.json.type.mapping:
-          orderConfirmation: com.grim.order.kafka.OrderConfirmation,com.grim.payment.dto.PaymentNotificationRequest
+          orderConfirmation:com.grim.order.kafka.order.OrderConfirmation,
+          paymentConfirmation:com.grim.notification.kafka.payment.PaymentConfirmation
       group-id: paymentGroup,orderGroup
       auto-offset-reset: earliest
   mail:

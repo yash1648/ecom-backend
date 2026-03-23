@@ -12,4 +12,5 @@ public record OrderConfirmation(
     Customer customer,
     List<Product> products
 ) {
+
 }

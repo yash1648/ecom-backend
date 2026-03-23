@@ -1,11 +1,12 @@
 spring:
+
   mongodb:
-    host: localhost
-    password: password
-    username: root
-    port: 27017
-    database: customer
-    authentication-database: admin
+      host: localhost
+      password: password
+      username: root
+      port: 27017
+      database: customer
+      authentication-database: admin
 
 eureka:
   client:
