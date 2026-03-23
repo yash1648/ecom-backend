@@ -1,0 +1,94 @@
+```html
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Payment Confirmation</title>
+    <meta charset="UTF-8">
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f6f9;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .card{
+            background:white;
+            padding:40px;
+            border-radius:10px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.1);
+            width:420px;
+            text-align:center;
+        }
+
+        .success{
+            color:#28a745;
+            font-size:26px;
+            font-weight:bold;
+            margin-bottom:20px;
+        }
+
+        .details{
+            text-align:left;
+            margin-top:20px;
+        }
+
+        .details p{
+            margin:10px 0;
+            font-size:16px;
+        }
+
+        .label{
+            font-weight:bold;
+            color:#555;
+        }
+
+        .value{
+            float:right;
+            color:#000;
+        }
+
+        .footer{
+            margin-top:30px;
+            font-size:14px;
+            color:#888;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="success">
+        Payment Successful
+    </div>
+
+    <div class="details">
+        <p>
+            <span class="label">Customer Name</span>
+            <span class="value" th:text="${customerName}">John Doe</span>
+        </p>
+
+        <p>
+            <span class="label">Amount Paid</span>
+            <span class="value">₹<span th:text="${amount}">1000</span></span>
+        </p>
+
+        <p>
+            <span class="label">Order Reference</span>
+            <span class="value" th:text="${orderReference}">ORD123456</span>
+        </p>
+    </div>
+
+    <div class="footer">
+        Thank you for your purchase.
+    </div>
+
+</div>
+
+</body>
+</html>
+```
