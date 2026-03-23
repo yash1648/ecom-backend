@@ -8,6 +8,8 @@ import com.grim.order.exception.BusinessException;
 import com.grim.order.kafka.OrderConfirmation;
 import com.grim.order.kafka.OrderProducer;
 import com.grim.order.mapper.OrderMapper;
+import com.grim.order.payment.PaymentClient;
+import com.grim.order.payment.PaymentRequest;
 import com.grim.order.repository.CustomerClient;
 import com.grim.order.repository.OrderRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -29,6 +31,7 @@ public class OrderService {
 
     private final OrderLineService orderLineService;
     private final OrderProducer orderProducer;
+    private final PaymentClient paymentClient;
 
     public Integer createOrder(@Valid OrderRequest order) {
 //        Check the customer -> openFiegn
@@ -53,9 +56,17 @@ public class OrderService {
             );
         }
 
-//      todo:  Start payment process
+        // Request payment -> openFeign
+        var paymentRequest=new PaymentRequest(
+                order.amount(),
+                order.paymentMethod(),
+                saveOrder.getId(),
+                saveOrder.getReference(),
+                customer
+        );
+        paymentClient.requestOrderPaymentMethod(paymentRequest);
 
-//       todo: Send the order -> kafka
+
         orderProducer.sendOrderConfirmation(
                 new OrderConfirmation(
                         order.reference(),
